@@ -14,11 +14,11 @@ executing.
  */
 
 public class BankSystem {
-    //    // optimize search time, if you have enough time
-    //    // use binary search
+
+    // search index using student ID
     static int gettingIndex(ArrayList<BankAccount> accounts, String studentId){
         for(int a=0; a<accounts.size(); a++){
-            if(accounts.get(a).studentId == studentId){
+            if(accounts.get(a).studentId==studentId){
                 return a;
             }
         }
@@ -28,10 +28,11 @@ public class BankSystem {
     public static void main(String[] args) {
         ArrayList<BankAccount> bankAccounts = new ArrayList<BankAccount>();
         bankAccounts.add(new BankAccount("Masruk Ahmed Ruhani","2019000000019", "Account_001", 157500));
+        bankAccounts.add(new BankAccount("Shad Alam Joy","2019000000059", "Account_003", 126000));
 
 
         BankAccount bankAccount = new BankAccount();
-        String studentID = "2019000000019";
+        String studentID = "2019000000059";
         int index = gettingIndex(bankAccounts, studentID);
         if(index != -1) {
             Transaction transaction1 = new Transaction(bankAccounts, bankAccount, studentID, index);
@@ -45,18 +46,10 @@ public class BankSystem {
             System.out.println("Invalid Student ID.");
         }
 
-//        studentID = 2031;
-//        index = gettingIndex(bankAccounts, studentID);
-//        if(index != -1) {
-//            Transaction transaction1 = new Transaction(bankAccounts, bankAccount, studentID, index);
-//        }else{
-//            System.out.println("Invalid Student ID.");
-//        }
-
         // Print the final balances of all accounts after all threads have finished
-        System.out.println("=====================================");
-        System.out.println(" :: Final Balance of all accounts :: ");
-        System.out.println("=====================================");
+        System.out.println("=======================================================================");
+        System.out.println(" ::                 Final Balance of all accounts                   :: ");
+        System.out.println("=======================================================================");
 
         for(int a=0; a<bankAccounts.size(); a++){
             System.out.println("-----------------------------------------------------------------------");

@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 class BankAccount {
@@ -15,76 +14,26 @@ class BankAccount {
         this.studentName = studentName;
         this.studentId = studentId;
         this.balance = initialBalance;
-//        this.accountNumber = "Account_";
         this.accountNumber = accountNumber;
-        Random random = new Random();
-
-//        for(int a=0; a<10; a++){
-//            int n = random.nextInt(10);
-//            this.accountNumber += String.valueOf(n);
-//        }
-    }
-/**
-    // deposit
-    public void deposit(long ammount){
-        if(ammount>0){
-            System.out.println("------------------------------------------------");
-            System.out.println("    Congratulations!!! Deposit Successfully.     ");
-            System.out.println("------------------------------------------------");
-            System.out.println("Previous Balance " + balance + " BDT");
-            balance+=ammount;
-            System.out.println("Deposit "+ ammount + " BDT to " + accountNumber);
-            System.out.println("Current Balance " + balance + " BDT");
-        }else{
-            System.out.println("Invalid deposit ammount. Enter positive ammount");
-        }
     }
 
-    // withdraw
-    public void withdraw(long ammount){
-        if(balance>0){
-            System.out.println("--------------------------------------------------");
-            System.out.println("    Congratulations!!! Withdraw Successfully.     ");
-            System.out.println("--------------------------------------------------");
-            System.out.println("Previous Balance " + balance + " BDT");
-            balance+=ammount;
-            System.out.println("Withdraw "+ ammount + " BDT to " + accountNumber);
-            System.out.println("Current Balance " + balance + " BDT");
-        }else{
-            System.out.println("Your account is empty.");
-            System.out.println(accountNumber + " Current Balance " + balance + " BDT");
-        }
-    }
-
-    // getting balance
-    public void getting_balance(){
-        System.out.println("--------------------------------------------------");
-        System.out.println("                Account Statement                 ");
-        System.out.println("--------------------------------------------------");
-        System.out.println(accountNumber + " Current Balance " + balance + " BDT");
-    }
-
-*/
+    // display operation number
     private void display(){
-        System.out.println("------------------------------------------");
-        System.out.println("------------------------------------------");
+        System.out.println("==========================================");
+        System.out.println("==========================================");
         System.out.println("    Account Operations ::");
         System.out.println("      >> Enter 1 for Deposit");
         System.out.println("      >> Enter 2 for Withdraw");
         System.out.println("      >> Enter 3 for Getting Balance");
         System.out.println("      >> Enter 0 for Quit Transaction");
-        System.out.println("------------------------------------------");
-        System.out.println("------------------------------------------");
+        System.out.println("==========================================");
+        System.out.println("==========================================");
     }
 
-
+    // user activity controller
     public void order(Transaction transaction){
         Scanner in = new Scanner(System.in);
-        int n;
-        long ammount;
-//        String ac;
-//        boolean port = false;
-        int index = transaction.index;
+        int n, ammount, index = transaction.index;
         while (true){
             display();
             System.out.print("Enter operation number :: ");
@@ -96,12 +45,12 @@ class BankAccount {
             }else if(n==1){
                 // deposit
                 System.out.print("Enter Deposit Amount :: ");
-                ammount = in.nextLong();
+                ammount = in.nextInt();
                 transaction.deposit(ammount, index);
             }else if(n==2){
                 // withdraw
                 System.out.print("Enter Withdraw Amount :: ");
-                ammount = in.nextLong();
+                ammount = in.nextInt();
                 transaction.withdraw(ammount, index);
             }else if(n==3){
                 // getting balance

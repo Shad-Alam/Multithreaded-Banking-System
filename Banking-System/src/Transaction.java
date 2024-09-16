@@ -1,17 +1,12 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
     Perform deposit and withdrawal operations on the Bank Account instance.
  */
 
-
 public class Transaction implements Runnable{
-//    private String studentName;
     private String studentId;
     private String accountNumber;
-//    private long balance;
-
     private ArrayList<BankAccount> accounts;
     private BankAccount bankAccount;
     public int index;
@@ -69,22 +64,14 @@ public class Transaction implements Runnable{
         System.out.println(" >> Current Balance   :: " + accounts.get(index).balance + " BDT");
     }
 
-
-    // if transaction end
-    // then close thread
-
     @Override
     public void run() {
-        System.out.println(" >> hello");
-
         synchronized (bankAccount){
             if(index!=-1) {
-                System.out.println(index + " == " + studentId);
                 this.accountNumber = accounts.get(index).accountNumber;
                 bankAccount.order(this);
             }else{
                 System.out.println("Student ID is Invalid");
-                // thread stop
             }
         }
     }

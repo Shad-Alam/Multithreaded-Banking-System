@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Transaction implements Runnable{
 //    private String studentName;
-    private long studentId;
+    private String studentId;
     private String accountNumber;
 //    private long balance;
 
@@ -17,7 +17,7 @@ public class Transaction implements Runnable{
     public int index;
 
     Thread thread;
-    Transaction(ArrayList<BankAccount> accounts, BankAccount bankAccount, long studentId, int index){
+    Transaction(ArrayList<BankAccount> accounts, BankAccount bankAccount, String studentId, int index){
         this.accounts = accounts;
         this.bankAccount = bankAccount;
         this.studentId = studentId;
@@ -50,10 +50,10 @@ public class Transaction implements Runnable{
             System.out.println(" ::    Congratulations!!! Withdraw Successfully.    :: ");
             System.out.println("=======================================================");
 
-            System.out.println(" >> Previous Balance " + accounts.get(index).balance + " BDT");
+            System.out.println(" >> Previous Balance  :: " + accounts.get(index).balance + " BDT");
             accounts.get(index).balance-=amount;
-            System.out.println(" >> Withdraw "+ amount + " BDT to " + accounts.get(index).accountNumber);
-            System.out.println(" Current Balance " + accounts.get(index).balance + " BDT");
+            System.out.println(" >> Withdraw          :: "+ amount + " BDT from Account Number :: " + accounts.get(index).accountNumber);
+            System.out.println(" >> Current Balance   :: " + accounts.get(index).balance + " BDT");
         }else{
             System.out.println(" >> Your account is balance less than                         :: " + amount + " BDT");
             System.out.println(" >> " + accounts.get(index).accountNumber + " Current Balance :: " + accounts.get(index).balance + " BDT");
@@ -65,7 +65,8 @@ public class Transaction implements Runnable{
         System.out.println("==================================================");
         System.out.println(" ::               Account Statement            :: ");
         System.out.println("==================================================");
-        System.out.println(accounts.get(index).accountNumber + " Current Balance " + accounts.get(index).balance + " BDT");
+        System.out.println(" >> Account Number    :: "+ accounts.get(index).accountNumber);
+        System.out.println(" >> Current Balance   :: " + accounts.get(index).balance + " BDT");
     }
 
 

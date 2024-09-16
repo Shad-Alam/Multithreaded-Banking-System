@@ -16,7 +16,7 @@ executing.
 public class BankSystem {
     //    // optimize search time, if you have enough time
     //    // use binary search
-    static int gettingIndex(ArrayList<BankAccount> accounts, long studentId){
+    static int gettingIndex(ArrayList<BankAccount> accounts, String studentId){
         for(int a=0; a<accounts.size(); a++){
             if(accounts.get(a).studentId == studentId){
                 return a;
@@ -27,15 +27,11 @@ public class BankSystem {
     }
     public static void main(String[] args) {
         ArrayList<BankAccount> bankAccounts = new ArrayList<BankAccount>();
-        bankAccounts.add(new BankAccount("Shad",2029, 12));
-        bankAccounts.add(new BankAccount("Suad",2026, 12));
-        bankAccounts.add(new BankAccount("Raad",2027, 12));
-        bankAccounts.add(new BankAccount("Nill",2031, 12));
-        bankAccounts.add(new BankAccount("Upra",2028, 12));
-        bankAccounts.add(new BankAccount("Thor",2020, 12));
+        bankAccounts.add(new BankAccount("Masruk Ahmed Ruhani","2019000000019", "Account_001", 157500));
+
 
         BankAccount bankAccount = new BankAccount();
-        long studentID = 2027;
+        String studentID = "2019000000019";
         int index = gettingIndex(bankAccounts, studentID);
         if(index != -1) {
             Transaction transaction1 = new Transaction(bankAccounts, bankAccount, studentID, index);

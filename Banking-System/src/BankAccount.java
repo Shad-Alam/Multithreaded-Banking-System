@@ -3,25 +3,26 @@ import java.util.Scanner;
 
 class BankAccount {
     public String studentName;
-    public long studentId;
+    public String studentId;
     public String accountNumber;
-    public long balance;
+    public int balance;
 
     BankAccount(){
 
     }
 
-    BankAccount(String studentName, long studentId, long initialBalance){
+    BankAccount(String studentName, String studentId, String accountNumber, int initialBalance){
         this.studentName = studentName;
         this.studentId = studentId;
         this.balance = initialBalance;
-        this.accountNumber = "Account_";
+//        this.accountNumber = "Account_";
+        this.accountNumber = accountNumber;
         Random random = new Random();
 
-        for(int a=0; a<10; a++){
-            int n = random.nextInt(10);
-            this.accountNumber += String.valueOf(n);
-        }
+//        for(int a=0; a<10; a++){
+//            int n = random.nextInt(10);
+//            this.accountNumber += String.valueOf(n);
+//        }
     }
 /**
     // deposit
@@ -81,11 +82,12 @@ class BankAccount {
         Scanner in = new Scanner(System.in);
         int n;
         long ammount;
-        String ac;
-        boolean port = false;
+//        String ac;
+//        boolean port = false;
         int index = transaction.index;
         while (true){
             display();
+            System.out.print("Enter operation number :: ");
             n = in.nextInt();
             if(n==0){
                 // quit()
@@ -93,10 +95,12 @@ class BankAccount {
                 break;
             }else if(n==1){
                 // deposit
+                System.out.print("Enter Deposit Amount :: ");
                 ammount = in.nextLong();
                 transaction.deposit(ammount, index);
             }else if(n==2){
                 // withdraw
+                System.out.print("Enter Withdraw Amount :: ");
                 ammount = in.nextLong();
                 transaction.withdraw(ammount, index);
             }else if(n==3){
@@ -110,11 +114,11 @@ class BankAccount {
         return studentName;
     }
 
-    public long getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public long getBalance() {
+    public int getBalance() {
         return balance;
     }
 

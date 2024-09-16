@@ -23,7 +23,7 @@ public class Transaction implements Runnable{
     }
 
     // deposit
-    public void deposit(long amount, int index){
+    public void deposit(int amount, int index){
         if(amount>0){
             System.out.println("======================================================");
             System.out.println(" ::    Congratulations!!! Deposit Successfully.    :: ");
@@ -39,7 +39,7 @@ public class Transaction implements Runnable{
     }
 
     // withdraw
-    public void withdraw(long amount, int index){
+    public void withdraw(int amount, int index){
         if(accounts.get(index).balance>=amount){
             System.out.println("=======================================================");
             System.out.println(" ::    Congratulations!!! Withdraw Successfully.    :: ");
@@ -50,7 +50,7 @@ public class Transaction implements Runnable{
             System.out.println(" >> Withdraw          :: "+ amount + " BDT from Account Number :: " + accounts.get(index).accountNumber);
             System.out.println(" >> Current Balance   :: " + accounts.get(index).balance + " BDT");
         }else{
-            System.out.println(" >> Your account is balance less than                         :: " + amount + " BDT");
+            System.out.println(" >> Your account is balance less than                         :: " + accounts.get(index).balance + " BDT");
             System.out.println(" >> " + accounts.get(index).accountNumber + " Current Balance :: " + accounts.get(index).balance + " BDT");
         }
     }

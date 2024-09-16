@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /***
 Initialize Accounts
 ○ Create instances of Bank Account with initial balances.
@@ -13,7 +15,21 @@ executing.
 
 public class BankSystem {
     public static void main(String[] args) {
-        System.out.println("Atlanta Bank");
+        ArrayList<BankAccount> bankAccounts = new ArrayList<BankAccount>();
+        bankAccounts.add(new BankAccount("Shad",2029, 12));
+        bankAccounts.add(new BankAccount("Suad",2026, 12));
+        bankAccounts.add(new BankAccount("Raad",2027, 12));
+        bankAccounts.add(new BankAccount("Nill",2031, 12));
+        bankAccounts.add(new BankAccount("Upra",2028, 12));
+        bankAccounts.add(new BankAccount("Thor",2020, 12));
+
+        BankAccount bankAccount = new BankAccount();
+        long studentID = 2027;
+        Transaction transaction1 = new Transaction(bankAccounts, bankAccount, studentID);
+
+        for(int a=0; a<bankAccounts.size(); a++){
+            System.out.println(bankAccounts.get(a).accountNumber + " >> " + bankAccounts.get(a).studentId + " >> " + bankAccounts.get(a).balance);
+        }
     }
 }
 

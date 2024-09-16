@@ -20,11 +20,10 @@ class BankAccount {
 
         for(int a=0; a<10; a++){
             int n = random.nextInt(10);
-            this.accountNumber+=n;
+            this.accountNumber += String.valueOf(n);
         }
-//        System.out.println(this.accountNumber);
     }
-
+/**
     // deposit
     public void deposit(long ammount){
         if(ammount>0){
@@ -64,7 +63,7 @@ class BankAccount {
         System.out.println(accountNumber + " Current Balance " + balance + " BDT");
     }
 
-
+*/
     private void display(){
         System.out.println("------------------------------------------");
         System.out.println("------------------------------------------");
@@ -77,12 +76,14 @@ class BankAccount {
         System.out.println("------------------------------------------");
     }
 
+
     public void order(Transaction transaction){
         Scanner in = new Scanner(System.in);
         int n;
         long ammount;
         String ac;
         boolean port = false;
+        int index = transaction.index;
         while (true){
             display();
             n = in.nextInt();
@@ -93,14 +94,14 @@ class BankAccount {
             }else if(n==1){
                 // deposit
                 ammount = in.nextLong();
-                transaction.deposit(ammount);
+                transaction.deposit(ammount, index);
             }else if(n==2){
                 // withdraw
                 ammount = in.nextLong();
-                transaction.withdraw(ammount);
+                transaction.withdraw(ammount, index);
             }else if(n==3){
                 // getting balance
-                transaction.getting_balance();
+                transaction.getting_balance(index);
             }
         }
     }

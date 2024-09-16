@@ -7,76 +7,65 @@ import java.util.ArrayList;
 
 
 public class Transaction implements Runnable{
-    private String studentName;
+//    private String studentName;
     private long studentId;
     private String accountNumber;
-    private long balance;
+//    private long balance;
 
     private ArrayList<BankAccount> accounts;
     private BankAccount bankAccount;
+    public int index;
 
     Thread thread;
-    Transaction(ArrayList<BankAccount> accounts, BankAccount bankAccount, long studentId){
+    Transaction(ArrayList<BankAccount> accounts, BankAccount bankAccount, long studentId, int index){
         this.accounts = accounts;
         this.bankAccount = bankAccount;
         this.studentId = studentId;
+        this.index = index;
 
-//        for(int a=0; a<accounts.size(); a++){
-//            System.out.println(" >> " + this.accounts.get(a).accountNumber);
-//        }
         thread = new Thread(this);
         thread.start();
     }
 
-    // optimize search time, if you have enough time
-    // use binary search
-    private int gettingIndex(long studentId){
-        for(int a=0; a<accounts.size(); a++){
-            if(accounts.get(a).studentId == studentId){
-                return a;
-            }
-        }
-
-        return -1;
-    }
-
     // deposit
-    public void deposit(long ammount){
-        if(ammount>0){
-            System.out.println("------------------------------------------------");
-            System.out.println("    Congratulations!!! Deposit Successfully.     ");
-            System.out.println("------------------------------------------------");
-            System.out.println("Previous Balance " + balance + " BDT");
-            balance+=ammount;
-            System.out.println("Deposit "+ ammount + " BDT to " + accountNumber);
-            System.out.println("Current Balance " + balance + " BDT");
+    public void deposit(long amount, int index){
+        if(amount>0){
+            System.out.println("======================================================");
+            System.out.println(" ::    Congratulations!!! Deposit Successfully.    :: ");
+            System.out.println("======================================================");
+
+            System.out.println(" >> Previous Balance :: " + accounts.get(index).balance + " BDT");
+            accounts.get(index).balance+=amount;
+            System.out.println(" >> Deposit          :: "+ amount + " BDT to " + accounts.get(index).accountNumber);
+            System.out.println(" >> Current Balance  :: " + accounts.get(index).balance + " BDT");
         }else{
-            System.out.println("Invalid deposit ammount. Enter positive ammount");
+            System.out.println(" >> Invalid deposit ammount. Enter positive ammount");
         }
     }
 
     // withdraw
-    public void withdraw(long ammount){
-        if(balance>=ammount){
-            System.out.println("--------------------------------------------------");
-            System.out.println("    Congratulations!!! Withdraw Successfully.     ");
-            System.out.println("--------------------------------------------------");
-            System.out.println("Previous Balance " + balance + " BDT");
-            balance-=ammount;
-            System.out.println("Withdraw "+ ammount + " BDT to " + accountNumber);
-            System.out.println("Current Balance " + balance + " BDT");
+    public void withdraw(long amount, int index){
+        if(accounts.get(index).balance>=amount){
+            System.out.println("=======================================================");
+            System.out.println(" ::    Congratulations!!! Withdraw Successfully.    :: ");
+            System.out.println("=======================================================");
+
+            System.out.println(" >> Previous Balance " + accounts.get(index).balance + " BDT");
+            accounts.get(index).balance-=amount;
+            System.out.println(" >> Withdraw "+ amount + " BDT to " + accounts.get(index).accountNumber);
+            System.out.println(" Current Balance " + accounts.get(index).balance + " BDT");
         }else{
-            System.out.println("Your account is empty.");
-            System.out.println(accountNumber + " Current Balance " + balance + " BDT");
+            System.out.println(" >> Your account is balance less than                         :: " + amount + " BDT");
+            System.out.println(" >> " + accounts.get(index).accountNumber + " Current Balance :: " + accounts.get(index).balance + " BDT");
         }
     }
 
     // getting balance
-    public void getting_balance(){
-        System.out.println("--------------------------------------------------");
-        System.out.println("                Account Statement                 ");
-        System.out.println("--------------------------------------------------");
-        System.out.println(accountNumber + " Current Balance " + balance + " BDT");
+    public void getting_balance(int index){
+        System.out.println("==================================================");
+        System.out.println(" ::               Account Statement            :: ");
+        System.out.println("==================================================");
+        System.out.println(accounts.get(index).accountNumber + " Current Balance " + accounts.get(index).balance + " BDT");
     }
 
 
@@ -86,7 +75,7 @@ public class Transaction implements Runnable{
     @Override
     public void run() {
         System.out.println(" >> hello");
-        int index = gettingIndex(studentId);
+
         synchronized (bankAccount){
             if(index!=-1) {
                 System.out.println(index + " == " + studentId);
